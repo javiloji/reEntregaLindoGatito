@@ -1,0 +1,41 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ejercicio 1</title>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<header>
+    <h1>CLASE GATO</h1>
+    <p>En esta clase se simulará el comportamiento de un gato mediante
+        objetos y clases prototipadas en JavaScript
+    </p>
+</header>
+
+<body>
+    <div id="divPrincipal">
+        <p>Para crear nuestro gato, antes hay que
+            disponer de la siguiente información:
+        </p>
+            <form id="formularioGato">
+                <label for="nombre">Nombre del gato: </label><input id="nombre" type="text" name="nombre" placeholder="Nombre"/><span></span>
+                <label for="fecha">Fecha de nacimiento: </label><input id="fecha" type="text" name="fecha" placeholder="22/07/2018"/><span></span>
+                <label for="raza">Raza: </label>
+                <select id="raza" required>
+                    <option value="">Seleccione una raza</option>
+                    <option>Persa</option>
+                    <option>Siamés</option>
+                    <option>Montés</option>
+                    <option>De Bengala</option>
+                    <option>Somalí</option>
+                </select><span></span>
+                <label for="peso">Peso: </label><input id="peso" type="number" min="1" max="14" placeholder="10"/><span></span>
+                <label for="enviar"></label><input type="submit" name="enviar" id="enviar" />
+        </form>
+    </div>
+</body>
+
+</html>
