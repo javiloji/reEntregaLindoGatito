@@ -4,41 +4,59 @@
 
     //Constructor del gato
 
-    function Gato(nombreGato, fechaNacimiento, raza, peso, edad) {
+    function Gato(nombreGato, fechaNacimiento, raza, peso) {
         this.nombreGato = nombreGato;
         this.fechaNacimiento = fechaNacimiento;
         this.raza = raza;
         this.peso = peso;
-        this.edad = edad;
+        this.muerto = false;
     }
 
-
-    Gato.prototype.jugar = (gato, imagen) => {
-
-        if (gato.peso > 0)
-            gato.peso--;
-
+    Gato.prototype.jugar = function (imagen) {
+        if (this.muerto) {
+            return;
+        }
+        // if (this.peso > 0){
+        this.peso--;
         imagen.src = "img/jugando.jpg";
+        // }
+        if (this.peso == 0) {
+            this.muerto = true;
+            imagen.src = "img/muerto.jpg"
+        }
     }
 
-    Gato.prototype.comer = (gato, imagen) => {
-
-        if (gato.peso < 15)
-            gato.peso++;
-
+    Gato.prototype.comer = function (imagen) {
+        if (this.muerto) {
+            return;
+        }
+        // if (this.peso < 15){
+        this.peso++;
         imagen.src = "img/comiendo.jpg";
+        // }
+        if (this.peso == 15) {
+            this.muerto = true;
+            imagen.src = "img/gordoMuerto.jpg"
+        }
     }
 
-    Gato.prototype.dormir = (imagen) => {
+    Gato.prototype.dormir = function (imagen) {
+
+        if (this.muerto)
+            return;
 
         imagen.src = "img/durmiendo.jpg";
     }
 
-    Gato.prototype.getEdad = (gato) => {
+    // Gato.prototype.morir
 
+    Gato.prototype.getEdad = function () {
 
-        let expresion = new RegExp("^([0-9]{2})([/-])([0-9]{2})\\2([0-9]{4})$");
-        let [, dia, , mes, anno] = expresion.exec(gato.fechaNacimiento);
+        if (this.muerto)
+            return;
+
+        let expresion = new RegExp("^([0-9]{4})([/-])([0-9]{2})\\2([0-9]{2})$");
+        let [, anno, , mes, dia] = expresion.exec(this.fechaNacimiento);
 
         let diaActual = new Date();
 

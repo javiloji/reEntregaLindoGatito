@@ -35,8 +35,8 @@
     function comprobarFecha(fecha) {
         try {
 
-            let expresion = new RegExp("^([0-9]{2})([/-])([0-9]{2})\\2([0-9]{4})$");
-            let [, dia, , mes, anno] = expresion.exec(fecha.trim());
+            let expresion = new RegExp("^([0-9]{4})([/-])([0-9]{2})\\2([0-9]{2})$");
+            let [, anno, , mes, dia] = expresion.exec(fecha.trim());
 
             let diaActual = new Date();
 
@@ -53,15 +53,11 @@
                 return "La fecha no puede ser futura";
             }
 
-            if (Number(dia) != date.getDate() || Number(mes) != date.getMonth() + 1 || Number(anno) != date.getFullYear()) {
-                return "La fecha no es válida";
-            }
-
             return "";
 
         } catch (error) {
             if (fecha.trim() == "") {
-                return "El campo no puede quedar vacio";
+                return "La fecha no es válida";
             }
             return "Introduce un formato válido, '22/12/2222' o '29-02-2000'";
         }
@@ -110,17 +106,22 @@
 
             event.preventDefault();
 
-            document.getElementById("nombre").nextSibling.innerHTML = comprobarNombre(document.getElementById("nombre").value);
-            document.getElementById("peso").nextSibling.innerHTML = comprobarPeso(document.getElementById("peso").value);
-            document.getElementById("fecha").nextSibling.innerHTML = comprobarFecha(document.getElementById("fecha").value);
-            document.getElementById("raza").nextSibling.innerHTML = comprobarRaza(document.getElementById("raza").value);
+            let nombre = document.getElementById("nombre");
+            let peso = document.getElementById("peso");
+            let fecha = document.getElementById("fecha");
+            let raza = document.getElementById("raza");
+            
+            nombre.nextSibling.innerHTML = comprobarNombre(nombre.value);
+            peso.nextSibling.innerHTML = comprobarPeso(peso.value);
+            fecha.nextSibling.innerHTML = comprobarFecha(fecha.value);
+            raza.nextSibling.innerHTML = comprobarRaza(raza.value);
 
             Array.from(document.getElementsByTagName("span")).forEach(i => {
                 if (i.innerHTML != "") {
                     error = true;
                 }
             })
-            if (error == false) {
+            if (!error) {
                 crearVentanaGato();
             }
 
